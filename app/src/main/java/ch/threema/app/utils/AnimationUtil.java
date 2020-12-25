@@ -26,10 +26,12 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
+import android.transition.Explode;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
@@ -52,11 +54,13 @@ import org.slf4j.LoggerFactory;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.transition.Fade;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 import ch.threema.app.R;
+import ch.threema.app.activities.ComposeMessageActivity;
 
 public class AnimationUtil {
 	private static final Logger logger = LoggerFactory.getLogger(AnimationUtil.class);
@@ -141,22 +145,30 @@ public class AnimationUtil {
 
 			if (v != null) {
 				intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				options = ActivityOptionsCompat.makeScaleUpAnimation(v, 0, 0, v.getWidth(), v.getHeight());
+
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+					//noinspection unchecked
+					options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,
+						Pair.create(v, "contact_avatar")
+						/*Pair.create(v, "contact_title")*/);
+				} else {
+					options = ActivityOptionsCompat.makeScaleUpAnimation(v, 0, 0, v.getWidth(), v.getHeight());
+				}
 			}
 
 			if (requestCode != 0) {
 				if (options != null) {
 					ActivityCompat.startActivityForResult(activity, intent, requestCode, options.toBundle());
 				} else {
-					activity.startActivityForResult(intent, requestCode);
-					activity.overridePendingTransition(R.anim.fast_fade_in, R.anim.fast_fade_out);
+					activity.startActivityForResult(intent, requestCode, null);
+					// activity.overridePendingTransition(R.anim.fast_fade_in, R.anim.fast_fade_out);
 				}
 			} else {
 				if (options != null) {
 					ActivityCompat.startActivity(activity, intent, options.toBundle());
 				} else {
-					activity.startActivity(intent);
-					activity.overridePendingTransition(R.anim.fast_fade_in, R.anim.fast_fade_out);
+					activity.startActivity(intent, null);
+					// activity.overridePendingTransition(R.anim.fast_fade_in, R.anim.fast_fade_out);
 				}
 			}
 		}
@@ -169,7 +181,8 @@ public class AnimationUtil {
 	public static void setupTransitions(Context context, Window window) {
 		// requestFeature() must be called before adding content
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && window != null && context != null) {
-			android.transition.Transition fade = new android.transition.Fade();
+			// TODO
+			/*android.transition.Transition fade = new android.transition.Fade();
 			fade.excludeTarget(android.R.id.navigationBarBackground, true);
 
 			window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
@@ -177,7 +190,7 @@ public class AnimationUtil {
 			window.setExitTransition(fade);
 
 			window.setAllowEnterTransitionOverlap(true);
-			window.setAllowReturnTransitionOverlap(true);
+			window.setAllowReturnTransitionOverlap(true);*/
 		}
 	}
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="Theme.Threema.NoActionBar" parent="AppBaseTheme">
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
+
+		<item name="android:windowActivityTransitions">true</item>
+
+		<item name="android:windowEnterTransition">@transition/slide</item>
+		<item name="android:windowExitTransition">@transition/explode</item>
+
+		<item name="android:windowSharedElementEnterTransition">
+			@transition/conversation_activity_transition
+		</item>
+		<item name="android:windowSharedElementExitTransition">
+			@transition/conversation_activity_transition
+		</item>
+	</style>
+</resources>

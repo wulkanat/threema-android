@@ -68,7 +68,8 @@ There's an alternative XML file in layout!
 				android:ellipsize="end"
 				android:singleLine="true"
 				android:text="Title"
-				android:textAppearance="@style/Threema.TextAppearance.List.FirstLine"/>
+				android:textAppearance="@style/Threema.TextAppearance.List.FirstLine"
+				android:transitionName="contact_title"/>
 
 			<ImageView
 				android:id="@+id/pin_icon"

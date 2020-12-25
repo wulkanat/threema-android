@@ -259,6 +259,8 @@ public class ComposeMessageFragment extends Fragment implements
 	OpenBallotNoticeView.VisibilityListener,
 	ThreemaToolbarActivity.OnSoftKeyboardChangedListener {
 
+
+
 	private static final Logger logger = LoggerFactory.getLogger(ComposeMessageFragment.class);
 
 	private static final String CONFIRM_TAG_DELETE_DISTRIBUTION_LIST = "deleteDistributionList";
@@ -588,7 +590,7 @@ public class ComposeMessageFragment extends Fragment implements
 					@Override
 					public void run() {
 						if (activity != null) {
-							activity.finish();
+							activity.goBack();
 						}
 					}
 				});
@@ -623,7 +625,7 @@ public class ComposeMessageFragment extends Fragment implements
 					@Override
 					public void run() {
 						if (activity != null) {
-							activity.finish();
+							activity.goBack();
 						}
 					}
 				});
@@ -650,7 +652,7 @@ public class ComposeMessageFragment extends Fragment implements
 					@Override
 					public void run() {
 						if (activity != null) {
-							activity.finish();
+							activity.goBack();
 						}
 					}
 				});
@@ -809,7 +811,7 @@ public class ComposeMessageFragment extends Fragment implements
 					convListView.setSelection(convListView.getSelectedItemPosition() + numberOfInsertedRecords + 1);
 				}
 
-				// Notify PullToRefreshAttacher that the refresh has activity.finished
+				// Notify PullToRefreshAttacher that the refresh has activity.goBacked
 				swipeRefreshLayout.setRefreshing(false);
 				swipeRefreshLayout.setEnabled(hastNextRecords);
 			}
@@ -865,7 +867,7 @@ public class ComposeMessageFragment extends Fragment implements
 		logger.debug("onCreateView");
 
 		if (!requiredInstances()) {
-			activity.finish();
+			activity.goBack();
 			return this.fragmentView;
 		}
 
@@ -1010,7 +1012,7 @@ public class ComposeMessageFragment extends Fragment implements
 				this.emojiPicker.addEmojiPickerListener(this);
 			} catch (Exception e) {
 				logger.error("Exception", e);
-				activity.finish();
+				activity.goBack();
 			}
 		}
 
@@ -1911,7 +1913,7 @@ public class ComposeMessageFragment extends Fragment implements
 				logger.error(activity.getString(R.string.group_not_found), activity, new Runnable() {
 					@Override
 					public void run() {
-						activity.finish();
+						activity.goBack();
 					}
 				});
 				return;
@@ -1935,7 +1937,7 @@ public class ComposeMessageFragment extends Fragment implements
 					logger.error("Invalid distribution list", activity, new Runnable() {
 						@Override
 						public void run() {
-							activity.finish();
+							activity.goBack();
 						}
 					});
 					return;
@@ -1971,7 +1973,7 @@ public class ComposeMessageFragment extends Fragment implements
 
 			if (this.identity == null || this.identity.length() == 0 || this.identity.equals(this.userService.getIdentity())) {
 				logger.error("no identity found");
-				activity.finish();
+				activity.goBack();
 				return;
 			}
 
@@ -1982,7 +1984,7 @@ public class ComposeMessageFragment extends Fragment implements
 				homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(homeIntent);
 				activity.overridePendingTransition(0, 0);
-				activity.finish();
+				activity.goBack();
 				return;
 			}
 			this.messageReceiver = this.contactService.createReceiver(this.contactModel);
@@ -1994,7 +1996,7 @@ public class ComposeMessageFragment extends Fragment implements
 			logger.error("invalid receiver", activity, new Runnable() {
 				@Override
 				public void run() {
-					activity.finish();
+					activity.goBack();
 				}
 			});
 			return;
@@ -4283,7 +4285,7 @@ public class ComposeMessageFragment extends Fragment implements
 						public void run() {
 							distributionListService.remove(dmodel);
 
-							RuntimeUtil.runOnUiThread(() -> activity.finish());
+							RuntimeUtil.runOnUiThread(() -> activity.goBack());
 						}
 					}).start();
 				}

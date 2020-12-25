@@ -24,6 +24,7 @@ package ch.threema.app.activities;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.widget.FrameLayout;
@@ -32,6 +33,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentManager;
 import ch.threema.app.R;
 import ch.threema.app.ThreemaApplication;
@@ -56,6 +58,9 @@ public class ComposeMessageActivity extends ThreemaToolbarActivity implements Ge
 	private static final int ID_HIDDEN_CHECK_ON_NEW_INTENT = 9291;
 	private static final int ID_HIDDEN_CHECK_ON_CREATE = 9292;
 	private static final String DIALOG_TAG_HIDDEN_NOTICE = "hidden";
+
+	public static final String AVATAR_CONTAINER_TRANSITION_NAME = "compose:toolbar:avatar";
+	public static final String NAME_TRANSITION_NAME = "compose:toolbar:name";
 
 	private ComposeMessageFragment composeMessageFragment;
 	private MessageSectionFragment messageSectionFragment;
@@ -162,12 +167,23 @@ public class ComposeMessageActivity extends ThreemaToolbarActivity implements Ge
 		}
 		if (composeMessageFragment != null) {
 			if (!composeMessageFragment.onBackPressed()) {
-				finish();
-				overridePendingTransition(0, 0);
+				goBack();
 			}
 			return;
 		}
 		super.onBackPressed();
+	}
+
+	/**
+	 * finish
+	 */
+	public void goBack() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			finishAfterTransition();
+		} else {
+			finish();
+			overridePendingTransition(0, 0);
+		}
 	}
 
 	@Override
@@ -219,10 +235,10 @@ public class ComposeMessageActivity extends ThreemaToolbarActivity implements Ge
 				if (resultCode == RESULT_OK) {
 					serviceManager.getScreenLockService().setAuthenticated(true);
 					if (!this.initActivity(this.bundle)) {
-						finish();
+						goBack();
 					}
 				} else {
-					finish();
+					goBack();
 				}
 				break;
 			case ID_HIDDEN_CHECK_ON_NEW_INTENT:
@@ -237,7 +253,7 @@ public class ComposeMessageActivity extends ThreemaToolbarActivity implements Ge
 				break;
 			case ThreemaActivity.ACTIVITY_ID_UNLOCK_MASTER_KEY:
 				if (ThreemaApplication.getMasterKey().isLocked()) {
-					finish();
+					goBack();
 				} else {
 					ConfigUtils.recreateActivity(this, ComposeMessageActivity.class, getIntent().getExtras());
 				}
@@ -291,11 +307,11 @@ public class ComposeMessageActivity extends ThreemaToolbarActivity implements Ge
 		intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT, SettingsSecurityFragment.class.getName());
 		intent.putExtra(PreferenceActivity.EXTRA_NO_HEADERS, true);
 		startActivity(intent);
-		finish();
+		goBack();
 	}
 
 	@Override
 	public void onNo(String tag, Object data) {
-		finish();
+		goBack();
 	}
 }
