@@ -29,14 +29,17 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.format.DateUtils;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -1057,19 +1060,40 @@ public class HomeActivity extends ThreemaAppCompatActivity implements
 				switch (item.getItemId()) {
 					case R.id.contacts:
 						if (!FRAGMENT_TAG_CONTACTS.equals(currentFragmentTag)) {
-							getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fast_fade_in, R.anim.fast_fade_out, R.anim.fast_fade_in, R.anim.fast_fade_out).hide(currentFragment).show(contactsFragment).commit();
+							Drawable contacts_icon = item.getIcon();
+							if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+								if (contacts_icon instanceof AnimatedVectorDrawable) {
+									((AnimatedVectorDrawable) contacts_icon).start();
+								}
+							}
+
+							getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.frag_slide, R.anim.fast_fade_out, R.anim.frag_slide, R.anim.fast_fade_out).hide(currentFragment).show(contactsFragment).commit();
 							currentFragmentTag = FRAGMENT_TAG_CONTACTS;
 						}
 						return true;
 					case R.id.messages:
+						Drawable messages_icon = item.getIcon();
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+							if (messages_icon instanceof AnimatedVectorDrawable) {
+								((AnimatedVectorDrawable) messages_icon).start();
+							}
+						}
+
 						if (!FRAGMENT_TAG_MESSAGES.equals(currentFragmentTag)) {
-							getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fast_fade_in, R.anim.fast_fade_out, R.anim.fast_fade_in, R.anim.fast_fade_out).hide(currentFragment).show(messagesFragment).commit();
+							getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.frag_slide, R.anim.fast_fade_out, R.anim.frag_slide, R.anim.fast_fade_out).hide(currentFragment).show(messagesFragment).commit();
 							currentFragmentTag = FRAGMENT_TAG_MESSAGES;
 						}
 						return true;
 					case R.id.my_profile:
+						Drawable profile_icon = item.getIcon();
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+							if (profile_icon instanceof AnimatedVectorDrawable) {
+								((AnimatedVectorDrawable) profile_icon).start();
+							}
+						}
+
 						if (!FRAGMENT_TAG_PROFILE.equals(currentFragmentTag)) {
-							getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fast_fade_in, R.anim.fast_fade_out, R.anim.fast_fade_in, R.anim.fast_fade_out).hide(currentFragment).show(profileFragment).commit();
+							getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.frag_slide, R.anim.fast_fade_out, R.anim.frag_slide, R.anim.fast_fade_out).hide(currentFragment).show(profileFragment).commit();
 							currentFragmentTag = FRAGMENT_TAG_PROFILE;
 						}
 						return true;
