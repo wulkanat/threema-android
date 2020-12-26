@@ -1202,4 +1202,6 @@
 	<string name="notification_channel_image_labeling_desc">Threema does media gallery image classification in the background</string>
 	<string name="notification_image_labeling_desc">Media gallery image classification in progress…</string>
 	<string name="no_media_found_global">No media found on this device</string>
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

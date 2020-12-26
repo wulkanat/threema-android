@@ -165,6 +165,14 @@
 			android:name="com.google.android.gms.car.application"
 			android:resource="@xml/automotive_app_desc"/>
 
+		<activity android:name=".activities.NavActivity"
+			android:launchMode="singleTask">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+
 		<activity
 			android:name=".activities.MainActivity"
 			android:label="@string/app_name"

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/nav_graph"
+	app:startDestination="@id/my_profile">
+
+	<fragment
+		android:id="@+id/contacts"
+		android:name="ch.threema.app.fragments.ContactsSectionFragment"
+		android:label="ContactsSectionFragment"
+		tools:layout="@layout/fragment_contacts"/>
+
+	<fragment
+		android:id="@+id/messages"
+		android:name="ch.threema.app.fragments.MessageSectionFragment"
+		android:label="MessagesSectionFragment"
+		tools:layout="@layout/fragment_messages" />
+
+	<fragment
+		android:id="@+id/my_profile"
+		android:name="ch.threema.app.fragments.MyIDFragment"
+		android:label="MyIDFragment"
+		tools:layout="@layout/fragment_my_id" />
+</navigation>
