@@ -6,8 +6,7 @@
              android:layout_height="match_parent"
              android:layout_alignParentLeft="true"
              android:layout_centerVertical="true"
-             android:clickable="false"
-	         android:transitionName="contact_avatar">
+             android:clickable="false">
 
 	<ImageView
 		android:id="@+id/avatar"

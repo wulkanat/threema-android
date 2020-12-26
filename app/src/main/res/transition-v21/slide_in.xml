@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet>
+	<slide xmlns:android="http://schemas.android.com/apk/res/android"
+		android:interpolator="@android:interpolator/decelerate_cubic">
+		<targets>
+			<target android:excludeId="@android:id/statusBarBackground"/>
+			<target android:excludeId="@id/appbar"/>
+			<target android:excludeId="@id/wallpaper_scroll"/>
+		</targets>
+	</slide>
+	<fade xmlns:android="http://schemas.android.com/apk/res/android"
+		android:interpolator="@android:interpolator/decelerate_quad"/>
+</transitionSet>

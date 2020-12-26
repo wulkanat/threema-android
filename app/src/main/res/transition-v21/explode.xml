@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<explode xmlns:android="http://schemas.android.com/apk/res/android">
-	<targets>
-		<target android:excludeId="@android:id/statusBarBackground"/>
-		<target android:excludeId="@id/appbar"/>
-		<target android:excludeId="@id/wallpaper_scroll"/>
-	</targets>
-</explode>
+<transitionSet>
+	<explode xmlns:android="http://schemas.android.com/apk/res/android"
+		android:interpolator="@android:interpolator/accelerate_decelerate">
+		<targets>
+			<target android:excludeId="@android:id/statusBarBackground"/>
+			<target android:excludeId="@id/appbar"/>
+			<target android:excludeId="@id/wallpaper_scroll"/>
+		</targets>
+	</explode>
+	<fade/>
+</transitionSet>
+

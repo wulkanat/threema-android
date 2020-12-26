@@ -41,6 +41,7 @@ import java.util.List;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import ch.threema.app.R;
 import ch.threema.app.ThreemaApplication;
@@ -248,6 +249,10 @@ public class MessageListAdapter extends AbstractRecyclerAdapter<ConversationMode
 
 			final ConversationModel conversationModel = this.getEntity(position);
 			holder.conversationModel = conversationModel;
+
+			ViewCompat.setTransitionName(
+				h.itemView.findViewById(R.id.avatar_container),
+				"avatar_" + conversationModel.getUid());
 
 			holder.itemView.setOnClickListener(new View.OnClickListener() {
 				@Override

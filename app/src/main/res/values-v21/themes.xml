@@ -6,8 +6,8 @@
 
 		<item name="android:windowActivityTransitions">true</item>
 
-		<item name="android:windowEnterTransition">@transition/slide</item>
-		<item name="android:windowExitTransition">@transition/explode</item>
+		<item name="android:windowEnterTransition">@transition/slide_in</item>
+		<item name="android:windowExitTransition">@transition/slide_out</item>
 
 		<item name="android:windowSharedElementEnterTransition">
 			@transition/conversation_activity_transition
@@ -15,5 +15,28 @@
 		<item name="android:windowSharedElementExitTransition">
 			@transition/conversation_activity_transition
 		</item>
+
+		<item name="android:windowAllowEnterTransitionOverlap">true</item>
+		<item name="android:windowAllowReturnTransitionOverlap">true</item>
+	</style>
+
+	<style name="Theme.Threema.NoActionBar.Dark" parent="AppBaseTheme.Dark">
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
+
+		<item name="android:windowActivityTransitions">true</item>
+
+		<item name="android:windowEnterTransition">@transition/slide_in</item>
+		<item name="android:windowExitTransition">@transition/slide_out</item>
+
+		<item name="android:windowSharedElementEnterTransition">
+			@transition/conversation_activity_transition
+		</item>
+		<item name="android:windowSharedElementExitTransition">
+			@transition/conversation_activity_transition
+		</item>
+
+		<item name="android:windowAllowEnterTransitionOverlap">true</item>
+		<item name="android:windowAllowReturnTransitionOverlap">true</item>
 	</style>
 </resources>

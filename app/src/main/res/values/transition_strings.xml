@@ -2,4 +2,6 @@
 <resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
 	<string name="transition_name_dots" translatable="false">transition:DOTS</string>
 	<string name="transition_name_logo" translatable="false">transition:LOGO</string>
+	<string name="transition_name_avatar" translatable="false">transition:AVATAR</string>
+	<string name="transition_name_contact_name" translatable="false">transition:CONTACT_NAME</string>
 </resources>

@@ -140,36 +140,36 @@ public class AnimationUtil {
 
 	public static void startActivityForResult(Activity activity, View v, Intent intent, int requestCode) {
 		logger.debug("start activity for result " + activity + " " + intent + " " + requestCode);
-		if (activity != null) {
-			ActivityOptionsCompat options = null;
+		if (activity == null) return;
 
-			if (v != null) {
-				intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		ActivityOptionsCompat options = null;
 
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-					//noinspection unchecked
-					options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,
-						Pair.create(v, "contact_avatar")
-						/*Pair.create(v, "contact_title")*/);
-				} else {
-					options = ActivityOptionsCompat.makeScaleUpAnimation(v, 0, 0, v.getWidth(), v.getHeight());
-				}
-			}
+		if (v != null) {
+			intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-			if (requestCode != 0) {
-				if (options != null) {
-					ActivityCompat.startActivityForResult(activity, intent, requestCode, options.toBundle());
-				} else {
-					activity.startActivityForResult(intent, requestCode, null);
-					// activity.overridePendingTransition(R.anim.fast_fade_in, R.anim.fast_fade_out);
-				}
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+				//noinspection unchecked
+				options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,
+					Pair.create(v, activity.getString(R.string.transition_name_avatar))
+					/*Pair.create(v, "contact_title")*/);
 			} else {
-				if (options != null) {
-					ActivityCompat.startActivity(activity, intent, options.toBundle());
-				} else {
-					activity.startActivity(intent, null);
-					// activity.overridePendingTransition(R.anim.fast_fade_in, R.anim.fast_fade_out);
-				}
+				options = ActivityOptionsCompat.makeScaleUpAnimation(v, 0, 0, v.getWidth(), v.getHeight());
+			}
+		}
+
+		if (requestCode != 0) {
+			if (options != null) {
+				ActivityCompat.startActivityForResult(activity, intent, requestCode, options.toBundle());
+			} else {
+				activity.startActivityForResult(intent, requestCode, null);
+				// activity.overridePendingTransition(R.anim.fast_fade_in, R.anim.fast_fade_out);
+			}
+		} else {
+			if (options != null) {
+				ActivityCompat.startActivity(activity, intent, options.toBundle());
+			} else {
+				activity.startActivity(intent, null);
+				// activity.overridePendingTransition(R.anim.fast_fade_in, R.anim.fast_fade_out);
 			}
 		}
 	}

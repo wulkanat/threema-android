@@ -625,7 +625,7 @@ public class ComposeMessageFragment extends Fragment implements
 					@Override
 					public void run() {
 						if (activity != null) {
-							activity.goBack();
+							activity.finish();
 						}
 					}
 				});
@@ -652,7 +652,7 @@ public class ComposeMessageFragment extends Fragment implements
 					@Override
 					public void run() {
 						if (activity != null) {
-							activity.goBack();
+							activity.finish();
 						}
 					}
 				});
@@ -681,7 +681,9 @@ public class ComposeMessageFragment extends Fragment implements
 
 	private final ConversationListener conversationListener = new ConversationListener() {
 		@Override
-		public void onNew(ConversationModel conversationModel) {}
+		public void onNew(ConversationModel conversationModel) {
+			ViewCompat.setTransitionName(actionBarAvatarView, "avatar_" + conversationModel.getUid());
+		}
 
 		@Override
 		public void onModified(ConversationModel modifiedConversationModel, Integer oldPosition) {}
@@ -811,7 +813,7 @@ public class ComposeMessageFragment extends Fragment implements
 					convListView.setSelection(convListView.getSelectedItemPosition() + numberOfInsertedRecords + 1);
 				}
 
-				// Notify PullToRefreshAttacher that the refresh has activity.goBacked
+				// Notify PullToRefreshAttacher that the refresh has activity.finished
 				swipeRefreshLayout.setRefreshing(false);
 				swipeRefreshLayout.setEnabled(hastNextRecords);
 			}
@@ -867,7 +869,7 @@ public class ComposeMessageFragment extends Fragment implements
 		logger.debug("onCreateView");
 
 		if (!requiredInstances()) {
-			activity.goBack();
+			activity.finish();
 			return this.fragmentView;
 		}
 
@@ -1012,7 +1014,7 @@ public class ComposeMessageFragment extends Fragment implements
 				this.emojiPicker.addEmojiPickerListener(this);
 			} catch (Exception e) {
 				logger.error("Exception", e);
-				activity.goBack();
+				activity.finish();
 			}
 		}
 
@@ -1913,7 +1915,7 @@ public class ComposeMessageFragment extends Fragment implements
 				logger.error(activity.getString(R.string.group_not_found), activity, new Runnable() {
 					@Override
 					public void run() {
-						activity.goBack();
+						activity.finish();
 					}
 				});
 				return;
@@ -1937,7 +1939,7 @@ public class ComposeMessageFragment extends Fragment implements
 					logger.error("Invalid distribution list", activity, new Runnable() {
 						@Override
 						public void run() {
-							activity.goBack();
+							activity.finish();
 						}
 					});
 					return;
@@ -1973,7 +1975,7 @@ public class ComposeMessageFragment extends Fragment implements
 
 			if (this.identity == null || this.identity.length() == 0 || this.identity.equals(this.userService.getIdentity())) {
 				logger.error("no identity found");
-				activity.goBack();
+				activity.finish();
 				return;
 			}
 
@@ -1984,7 +1986,7 @@ public class ComposeMessageFragment extends Fragment implements
 				homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(homeIntent);
 				activity.overridePendingTransition(0, 0);
-				activity.goBack();
+				activity.finish();
 				return;
 			}
 			this.messageReceiver = this.contactService.createReceiver(this.contactModel);
@@ -1996,7 +1998,7 @@ public class ComposeMessageFragment extends Fragment implements
 			logger.error("invalid receiver", activity, new Runnable() {
 				@Override
 				public void run() {
-					activity.goBack();
+					activity.finish();
 				}
 			});
 			return;
@@ -2597,6 +2599,7 @@ public class ComposeMessageFragment extends Fragment implements
 								intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 								intent.setData((Uri.parse("foobar://" + SystemClock.elapsedRealtime())));
 								IntentDataUtil.append(contactModel, intent);
+								// TODO
 								getActivity().finish();
 
 							} else {
@@ -4285,7 +4288,7 @@ public class ComposeMessageFragment extends Fragment implements
 						public void run() {
 							distributionListService.remove(dmodel);
 
-							RuntimeUtil.runOnUiThread(() -> activity.goBack());
+							RuntimeUtil.runOnUiThread(() -> activity.finish());
 						}
 					}).start();
 				}

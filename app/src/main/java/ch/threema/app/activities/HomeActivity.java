@@ -1063,6 +1063,7 @@ public class HomeActivity extends ThreemaAppCompatActivity implements
 							Drawable contacts_icon = item.getIcon();
 							if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 								if (contacts_icon instanceof AnimatedVectorDrawable) {
+									// TODO
 									((AnimatedVectorDrawable) contacts_icon).start();
 								}
 							}
