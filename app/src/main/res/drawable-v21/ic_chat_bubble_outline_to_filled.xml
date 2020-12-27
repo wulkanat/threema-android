@@ -29,10 +29,10 @@
 			<set>
 				<!-- Fill -->
 				<objectAnimator
-					android:duration="100"
+					android:duration="300"
 					android:interpolator="@android:anim/accelerate_decelerate_interpolator"
 					android:propertyName="pathData"
-					android:startOffset="200"
+					android:startOffset="0"
 					android:valueFrom="
 						M 20 2C 20.53 2 21.039 2.211 21.414 2.586C 21.789 2.961 22 3.47 22 4L 22 16C 22 16.53 21.789 17.039 21.414 17.414C 21.039 17.789 20.53 18 20 18L 6 18L 2 22L 2 4C 2 2.89 2.9 2 4 2L 20 2 M 4 4L 4 17.17L 5.17 16L 20 16L 20 4L 4 4
 						M 5 11L5 11L5 13L16 13L16 11M 5 7L5 7L5 9L18 9L18 7Z"
