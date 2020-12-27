@@ -17,7 +17,7 @@
 
 	<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 		android:id="@+id/floating"
-		app:icon="@drawable/ic_chat_bubble"
+		app:icon="@drawable/ic_chat_bubble_outline"
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
 		android:layout_margin="@dimen/floating_button_margin"
