@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:id="@+id/selected"
+		android:drawable="@drawable/ic_profile_filled"
+		android:state_checked="true"/>
+
+	<item
+		android:id="@+id/unselected"
+		android:drawable="@drawable/ic_profile"
+		android:state_checked="false"/>
+
+	<transition
+		android:fromId="@id/selected"
+		android:toId="@id/unselected"
+		android:reversible="true"
+		android:drawable="@drawable/ic_profile_filled_to_outline"/>
+</animated-selector>

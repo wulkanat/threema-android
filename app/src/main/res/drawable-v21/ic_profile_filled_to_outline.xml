@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:aapt="http://schemas.android.com/aapt">
+	<target android:name="body">
+		<aapt:attr name="android:animation">
+			<set>
+				<objectAnimator
+					android:duration="300"
+					android:propertyName="pathData"
+					android:valueFrom="M12,6.5a14,14 0 1,0 0.1,0Z"
+					android:valueTo="M12,14.5a8,8 0 1,0 0.1,0Z"
+					android:valueType="pathType" />
+				<objectAnimator
+					android:duration="300"
+					android:propertyName="strokeWidth"
+					android:valueFrom="12"
+					android:valueTo="2"
+					android:valueType="float" />
+			</set>
+		</aapt:attr>
+	</target>
+	<target android:name="head">
+		<aapt:attr name="android:animation">
+			<set>
+				<objectAnimator
+					android:duration="300"
+					android:propertyName="pathData"
+					android:valueFrom="M12,4a4,4 0 1,0 0.1,0Z"
+					android:valueTo="M12,6.5a2.5,2.5 0 1,0 0.1,0Z"
+					android:valueType="pathType" />
+				<objectAnimator
+					android:duration="300"
+					android:propertyName="strokeWidth"
+					android:valueFrom="1"
+					android:valueTo="2"
+					android:valueType="float" />
+			</set>
+		</aapt:attr>
+	</target>
+	<aapt:attr name="android:drawable">
+		<vector
+			android:width="24dp"
+			android:height="24dp"
+			android:viewportHeight="24"
+			android:viewportWidth="24">
+			<group android:name="group_body">
+				<!-- This is the outer circle without the head -->
+				<clip-path android:pathData="
+						M12,2
+						a9,9 0 1,0 0.1,0
+						L12,2
+						M12,10.5
+						a3,3 0 1,1 0.1,0
+						Z" />
+				<path
+					android:name="body"
+					android:pathData="M12,6.5a14,14 0 1,0 0.1,0Z"
+					android:strokeColor="#000"
+					android:strokeWidth="12" />
+			</group>
+			<path
+				android:name="head"
+				android:pathData="M12,4a4,4 0 1,0 0.1,0Z"
+				android:strokeColor="#000"
+				android:strokeWidth="1" />
+			<path
+				android:name="outer_ring"
+				android:pathData="M12,2a9,9 0 1,0 0.1,0Z"
+				android:strokeColor="#000"
+				android:strokeWidth="2" />
+		</vector>
+	</aapt:attr>
+</animated-vector>
