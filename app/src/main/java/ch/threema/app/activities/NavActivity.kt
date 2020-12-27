@@ -9,13 +9,12 @@ import androidx.navigation.ui.setupWithNavController
 import ch.threema.app.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class NavActivity : AppCompatActivity() {
+class NavActivity : AppCompatActivity(R.layout.nav_host) {
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
-        setContentView(R.layout.nav_host)
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_bottom_navigation)
         val navController = findNavController(R.id.main_navigation_content)
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_bottom_navigation)
 
         bottomNavigationView.setupWithNavController(navController)
         setupActionBarWithNavController(navController)

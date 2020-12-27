@@ -4,6 +4,7 @@ plugins {
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 /**
  * Return the git hash, if git is installed.
@@ -113,6 +114,10 @@ android {
         testInstrumentationRunner 'ch.threema.app.ThreemaTestRunner'
         testInstrumentationRunnerArgument 'notAnnotation', 'ch.threema.app.TestFastlaneOnly,ch.threema.app.DangerousTest'
         testInstrumentationRunnerArgument 'disableAnalytics', 'true' // https://developer.android.com/training/testing/espresso/setup#analytics
+    }
+
+    dataBinding {
+        enabled = true
     }
 
     splits {
