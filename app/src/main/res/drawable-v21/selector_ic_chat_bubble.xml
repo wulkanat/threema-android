@@ -2,7 +2,7 @@
 <animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
 	<item
 		android:id="@+id/selected"
-		android:drawable="@drawable/ic_chat_bubble_filled"
+		android:drawable="@drawable/ic_chat_bubble_fill"
 		android:state_checked="true"/>
 
 	<item
@@ -14,11 +14,11 @@
 		android:fromId="@id/selected"
 		android:toId="@id/unselected"
 		android:reversible="false"
-		android:drawable="@drawable/ic_chat_bubble_filled_to_outline"/>
+		android:drawable="@drawable/ic_chat_bubble_fill_to_outline"/>
 
 	<transition
 		android:fromId="@id/unselected"
 		android:toId="@id/selected"
 		android:reversible="false"
-		android:drawable="@drawable/ic_chat_bubble_outline_to_filled"/>
+		android:drawable="@drawable/ic_chat_bubble_outline_to_fill"/>
 </animated-selector>

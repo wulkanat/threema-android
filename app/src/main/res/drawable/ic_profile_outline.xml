@@ -7,26 +7,26 @@ easy to animate
 	android:height="24dp"
 	android:viewportHeight="24"
 	android:viewportWidth="24">
-	<group android:name="body">
+	<group>
 		<!-- This is the outer circle without the head -->
 		<clip-path android:pathData="
-			M12,2
+            M12,2
 			a9,9 0 1,0 0.1,0
 			L12,2
 			M12,10.5
 			a3,3 0 1,1 0.1,0
 			Z" />
 		<path
-			android:pathData="M12,6.5a14,14 0 1,0 0.1,0Z"
+			android:name="body"
+			android:pathData="M12,14.5a8,8 0 1,0 0.1,0Z"
 			android:strokeColor="#000"
-			android:strokeWidth="12" />
+			android:strokeWidth="2" />
 	</group>
-	<group android:name="head">
-		<path
-			android:pathData="M12,4a4,4 0 1,0 0.1,0Z"
-			android:strokeColor="#000"
-			android:strokeWidth="1" />
-	</group>
+	<path
+		android:name="head"
+		android:pathData="M12,6.5a2.5,2.5 0 1,0 0.1,0Z"
+		android:strokeColor="#000"
+		android:strokeWidth="2" />
 	<path
 		android:name="outer_ring"
 		android:pathData="M12,2a9,9 0 1,0 0.1,0Z"
