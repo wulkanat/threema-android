@@ -1,0 +1,95 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:aapt="http://schemas.android.com/aapt">
+	<target android:name="fill">
+		<aapt:attr name="android:animation">
+			<objectAnimator
+				android:duration="200"
+				android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+				android:propertyName="translateY"
+				android:valueFrom="0"
+				android:valueTo="9.5"
+				android:valueType="floatType" />
+		</aapt:attr>
+	</target>
+	<target android:name="heads">
+		<aapt:attr name="android:animation">
+			<set>
+				<objectAnimator
+					android:duration="200"
+					android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+					android:propertyName="strokeWidth"
+					android:valueFrom="3"
+					android:valueTo="1.5"
+					android:valueType="floatType" />
+				<objectAnimator
+					android:duration="200"
+					android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+					android:propertyName="pathData"
+					android:valueFrom="
+						M7.5 10.5a1.5,1.5 0 1 1 0.1,0Z
+                        M16.5 10.5a1.5,1.5 0 1 1 0.1,0Z"
+					android:valueTo="
+						M7.5 11.5a2.5,2.5 0 1 1 0.1,0Z
+                        M16.5 11.5a2.5,2.5 0 1 1 0.1,0Z"
+					android:valueType="pathType" />
+			</set>
+		</aapt:attr>
+	</target>
+
+	<aapt:attr name="android:drawable">
+		<vector
+
+			android:width="24dp"
+			android:height="24dp"
+			android:viewportHeight="24.0"
+			android:viewportWidth="24.0">
+			<group>
+				<clip-path android:pathData="
+						M16.5,13
+                        c-1.2,0 -3.07,0.34 -4.5,1 -1.43,-0.67 -3.3,-1 -4.5,-1
+                        C5.33,13 1,14.08 1,16.25
+                        L1,19
+                        h22
+                        v-2.75
+                        c0,-2.17 -4.33,-3.25 -6.5,-3.25" />
+				<group
+					android:name="fill"
+					android:translateY="0">
+					<path
+						android:fillColor="#000"
+						android:pathData="M12 28a10,10 0 1 1 0.1,0Z" />
+				</group>
+			</group>
+			<path
+				android:name="heads"
+				android:pathData="
+                    M7.5 10.5a1.5,1.5 0 1 1 0.1,0Z
+                    M16.5 10.5a1.5,1.5 0 1 1 0.1,0Z"
+				android:strokeColor="#000"
+				android:strokeWidth="3" />
+			<path
+				android:fillColor="#000"
+				android:pathData="
+                    M16.5,13
+                    c-1.2,0 -3.07,0.34 -4.5,1 -1.43,-0.67 -3.3,-1 -4.5,-1
+                    C5.33,13 1,14.08 1,16.25
+                    L1,19
+                    h22
+                    v-2.75
+                    c0,-2.17 -4.33,-3.25 -6.5,-3.25
+                    z
+                    M12.5,17.5
+                    h-10
+                    v-1.25
+                    c0,-0.54 2.56,-1.75 5,-1.75
+                    s5,1.21 5,1.75v1.25
+                    z
+                    M21.5,17.5
+                    L14,17.5
+                    v-1.25
+                    c0,-0.46 -0.2,-0.86 -0.52,-1.22 0.88,-0.3 1.96,-0.53 3.02,-0.53 2.44,0 5,1.21 5,1.75
+                    v1.25
+                    z" />
+		</vector>
+	</aapt:attr>
+</animated-vector>
