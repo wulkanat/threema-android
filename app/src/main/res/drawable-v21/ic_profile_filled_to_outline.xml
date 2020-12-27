@@ -5,14 +5,14 @@
 		<aapt:attr name="android:animation">
 			<set>
 				<objectAnimator
-					android:duration="250"
+					android:duration="200"
 					android:interpolator="@android:anim/accelerate_decelerate_interpolator"
 					android:propertyName="pathData"
 					android:valueFrom="M12,6.5a14,14 0 1,0 0.1,0Z"
 					android:valueTo="M12,14.5a8,8 0 1,0 0.1,0Z"
 					android:valueType="pathType" />
 				<objectAnimator
-					android:duration="250"
+					android:duration="200"
 					android:interpolator="@android:anim/accelerate_decelerate_interpolator"
 					android:propertyName="strokeWidth"
 					android:valueFrom="12"
@@ -25,7 +25,7 @@
 		<aapt:attr name="android:animation">
 			<set>
 				<objectAnimator
-					android:duration="250"
+					android:duration="200"
 					android:interpolator="@android:anim/accelerate_decelerate_interpolator"
 					android:propertyName="pathData"
 					android:valueFrom="M12,4a4,4 0 1,0 0.1,0Z"
