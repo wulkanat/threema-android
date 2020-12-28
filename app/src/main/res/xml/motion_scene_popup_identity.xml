@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:motion="http://schemas.android.com/apk/res-auto">
+	<ConstraintSet android:id="@+id/start" >
+		<Constraint
+			android:id="@+id/web_label"
+			android:layout_width="100dp"
+			motion:layout_constraintBaseline_toBaselineOf="@id/web_enable"
+			motion:layout_constraintLeft_toRightOf="@id/web_enable" />
+	</ConstraintSet>
+	<ConstraintSet android:id="@+id/end" >
+		<Constraint
+			android:id="@+id/web_label"
+			android:layout_width="300dp"
+			motion:layout_constraintBaseline_toBaselineOf="@id/web_enable"
+			motion:layout_constraintLeft_toRightOf="@id/web_enable" />
+	</ConstraintSet>
+	<Transition
+		motion:constraintSetStart="@+id/start"
+		motion:constraintSetEnd="@+id/end">
+		<OnSwipe
+			motion:dragDirection="dragDown" />
+		<OnClick
+			motion:targetId="@id/qr_image"
+			motion:clickAction="toggle"/>
+	</Transition>
+</MotionScene>

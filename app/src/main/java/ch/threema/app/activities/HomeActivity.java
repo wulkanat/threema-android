@@ -70,6 +70,7 @@ import androidx.annotation.UiThread;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LifecycleOwner;
@@ -149,7 +150,8 @@ import static ch.threema.app.voip.services.VoipCallService.EXTRA_START_TIME;
 public class HomeActivity extends ThreemaAppCompatActivity implements
 	SMSVerificationDialog.SMSVerificationDialogCallback,
 	GenericAlertDialog.DialogClickListener,
-	LifecycleOwner {
+	LifecycleOwner,
+	MotionLayout.TransitionListener {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeActivity.class);
 
@@ -232,6 +234,26 @@ public class HomeActivity extends ThreemaAppCompatActivity implements
 	private TooltipPopup tooltipPopup = null;
 
 	private String currentFragmentTag;
+
+	@Override
+	public void onTransitionStarted(MotionLayout motionLayout, int i, int i1) {
+
+	}
+
+	@Override
+	public void onTransitionChange(MotionLayout motionLayout, int i, int i1, float v) {
+
+	}
+
+	@Override
+	public void onTransitionCompleted(MotionLayout motionLayout, int i) {
+
+	}
+
+	@Override
+	public void onTransitionTrigger(MotionLayout motionLayout, int i, boolean b, float v) {
+
+	}
 
 	private static class UpdateBottomNavigationBadgeTask extends AsyncTask<Void, Void, Integer> {
 		WeakReference<Activity> activityWeakReference;
@@ -445,7 +467,7 @@ public class HomeActivity extends ThreemaAppCompatActivity implements
 	private ProfileListener profileListener = new ProfileListener() {
 		@Override
 		public void onAvatarChanged() {
-			RuntimeUtil.runOnUiThread(() -> updateDrawerImage());
+			/*RuntimeUtil.runOnUiThread(() -> updateDrawerImage());*/
 		}
 
 		@Override
@@ -1129,7 +1151,7 @@ public class HomeActivity extends ThreemaAppCompatActivity implements
 		}
 	}
 
-	@SuppressLint("StaticFieldLeak")
+	/*@SuppressLint("StaticFieldLeak")
 	private void updateDrawerImage() {
 		if (toolbar != null) {
 			new AsyncTask<Void, Void, Drawable>() {
@@ -1152,7 +1174,7 @@ public class HomeActivity extends ThreemaAppCompatActivity implements
 				}
 			}.execute();
 		}
-	}
+	}*/
 
 	@SuppressLint("StaticFieldLeak")
 	private void reallyCancelVerify() {
@@ -1264,7 +1286,7 @@ public class HomeActivity extends ThreemaAppCompatActivity implements
 			}
 		});
 
-		updateDrawerImage();
+		// updateDrawerImage();
 
 		return toolbar.getMinimumHeight();
 	}

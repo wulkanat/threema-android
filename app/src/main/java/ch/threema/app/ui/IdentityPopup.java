@@ -42,6 +42,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.constraintlayout.widget.Group;
 import ch.threema.app.R;
 import ch.threema.app.ThreemaApplication;
@@ -60,7 +62,7 @@ import ch.threema.app.webclient.manager.WebClientListenerManager;
 import ch.threema.app.webclient.services.SessionService;
 import ch.threema.base.ThreemaException;
 
-public class IdentityPopup extends DimmingPopupWindow {
+public class IdentityPopup extends PopupWindow {
 
 	private static final Logger logger = LoggerFactory.getLogger(IdentityPopup.class);
 
@@ -104,7 +106,7 @@ public class IdentityPopup extends DimmingPopupWindow {
 		}
 
 		LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		FrameLayout popupLayout = (FrameLayout) layoutInflater.inflate(R.layout.popup_identity, null, false);
+		MotionLayout popupLayout = (MotionLayout) layoutInflater.inflate(R.layout.popup_identity, null, false);
 
 		TextView textView = popupLayout.findViewById(R.id.identity_label);
 		this.qrCodeView = popupLayout.findViewById(R.id.qr_image);
@@ -153,10 +155,6 @@ public class IdentityPopup extends DimmingPopupWindow {
 			});
 		}
 
-		if (qrCodeView != null) {
-			qrCodeView.setOnClickListener(v -> zoomQR(v));
-		}
-
 		if (webControls != null && webEnableView != null) {
 			if (AppRestrictionUtil.isWebDisabled(context) || ConfigUtils.isBlackBerry()) {
 				// Webclient is disabled, hide UI elements
@@ -176,13 +174,9 @@ public class IdentityPopup extends DimmingPopupWindow {
 		activity.overridePendingTransition(R.anim.fast_fade_in, R.anim.fast_fade_out);
 	}
 
-	private void zoomQR(View v) {
-		new QRCodePopup(context, activity.getWindow().getDecorView(), null).show(v, null);
-	}
-
 	/**
 	 *
-	 * @param activity
+	 * @param activity The activity the popup will be in
 	 * @param toolbarView Toolbar this popup will be aligned to
 	 * @param location center location of navigation icon in toolbar
 	 */
@@ -223,7 +217,7 @@ public class IdentityPopup extends DimmingPopupWindow {
 				//
 			}
 
-			dimBackground();
+			// dimBackground();
 
 			getContentView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 				@Override
@@ -249,7 +243,7 @@ public class IdentityPopup extends DimmingPopupWindow {
 		WebClientListenerManager.serviceListener.remove(this.webClientServiceListener);
 	}
 
-	private WebClientServiceListener webClientServiceListener = new WebClientServiceListener() {
+	private final WebClientServiceListener webClientServiceListener = new WebClientServiceListener() {
 		@Override
 		public void onEnabled() {
 			this.setEnabled(true);
