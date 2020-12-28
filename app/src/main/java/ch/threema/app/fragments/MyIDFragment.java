@@ -225,7 +225,6 @@ public class MyIDFragment extends MainFragment
 			if (userService != null && userService.getIdentity() != null) {
 				((TextView) fragmentView.findViewById(R.id.my_id)).setText(userService.getIdentity());
 				fragmentView.findViewById(R.id.my_id_share).setOnClickListener(this);
-				fragmentView.findViewById(R.id.my_id_qr).setOnClickListener(this);
 			}
 
 			this.avatarView = fragmentView.findViewById(R.id.avatar_edit_view);
@@ -577,9 +576,6 @@ public class MyIDFragment extends MainFragment
 					ProtocolDefines.PUSH_FROM_LEN);;
 				nicknameEditDialog.setTargetFragment(this, 0);
 				nicknameEditDialog.show(getFragmentManager(), DIALOG_TAG_EDIT_NICKNAME);
-				break;
-			case R.id.my_id_qr:
-				new QRCodePopup(getContext(), getActivity().getWindow().getDecorView(), getActivity()).show(v, null);
 				break;
 			case R.id.avatar:
 				launchContactImageZoom(v);

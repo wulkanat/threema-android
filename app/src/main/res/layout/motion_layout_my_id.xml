@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/my_id_motion_layout"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:clipChildren="false"
+
+	app:layoutDescription="@xml/motion_scene_my_id"
+	tools:showPaths="true">
+
+	<ImageView
+		android:id="@+id/my_id_qr"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="18dp"
+		android:layout_marginRight="4dp"
+		android:layout_marginTop="18dp"
+		android:background="@drawable/selector_compose_button"
+		android:clickable="true"
+		android:contentDescription="@string/show_as_qrcode"
+		android:elevation="10dp"
+		android:focusable="true"
+		android:outlineProvider="none"
+		android:padding="4dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintRight_toLeftOf="@+id/my_id_share"
+		app:layout_constraintTop_toTopOf="parent"
+		app:srcCompat="@drawable/ic_qr_code"
+		app:tint="?attr/textColorSecondary" />
+
+	<ImageView
+		android:id="@+id/my_id_share"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="@drawable/selector_compose_button"
+		android:clickable="true"
+		android:contentDescription="@string/share_via"
+		android:paddingTop="24dp"
+		android:elevation="10dp"
+		android:focusable="true"
+		android:outlineProvider="none"
+		app:layout_constraintRight_toRightOf="@id/parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:srcCompat="@drawable/ic_share_outline"
+		app:tint="?attr/textColorSecondary" />
+
+	<TextView
+		android:id="@+id/my_id_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="23dp"
+		android:layout_marginLeft="15dp"
+		android:elevation="10dp"
+		android:ellipsize="end"
+		android:outlineProvider="none"
+		android:singleLine="true"
+		android:text="@string/title_mythreemaid"
+		android:textAppearance="@style/Threema.Text.Overline"
+		android:textColor="@null"
+		app:layout_constrainedWidth="true"
+		app:layout_constraintHorizontal_bias="0"
+		app:layout_constraintLeft_toLeftOf="@id/profile_card"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<ch.threema.app.emojis.EmojiTextView
+		android:id="@+id/my_id"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="6dp"
+		android:elevation="10dp"
+		android:ellipsize="end"
+		android:outlineProvider="none"
+		android:singleLine="true"
+		android:text="ABCDEFGH"
+		android:textSize="18sp"
+		app:layout_constrainedWidth="true"
+		app:layout_constraintHorizontal_bias="0"
+		app:layout_constraintLeft_toLeftOf="@id/my_id_title"
+		app:layout_constraintTop_toBottomOf="@id/my_id_title"
+		tools:ignore="HardcodedText" />
+
+	<androidx.cardview.widget.CardView
+		android:id="@+id/profile_card"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:clickable="false"
+		android:focusable="false"
+		android:layout_marginLeft="6dp"
+		android:layout_marginRight="6dp"
+		android:paddingTop="8dp"
+		android:paddingBottom="8dp"
+		app:cardBackgroundColor="?attr/cardview_background"
+		app:cardCornerRadius="@dimen/cardview_border_radius"
+		app:cardElevation="5dp"
+		app:cardMaxElevation="5dp"
+		app:layout_constrainedHeight="true"
+		app:layout_constrainedWidth="true"
+		app:layout_constraintBottom_toBottomOf="@id/my_id_qr"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="1.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="@id/my_id_qr"
+		app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
