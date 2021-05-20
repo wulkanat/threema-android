@@ -21,6 +21,7 @@
 
 package ch.threema.app.ui;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -44,6 +45,7 @@ import org.slf4j.LoggerFactory;
 import java.lang.ref.WeakReference;
 
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.Group;
 import ch.threema.app.R;
 import ch.threema.app.ThreemaApplication;
@@ -70,6 +72,7 @@ public class IdentityPopup extends DimmingPopupWindow {
 	private WeakReference<Activity> activityRef = new WeakReference<>(null);
 	private ImageView qrCodeView;
 	private QRCodeService qrCodeService;
+	private CardView qrCardView;
 	private SwitchCompat webEnableView;
 	private SessionService sessionService;
 	private int animationCenterX, animationCenterY;
@@ -112,6 +115,7 @@ public class IdentityPopup extends DimmingPopupWindow {
 		this.qrCodeView = popupLayout.findViewById(R.id.qr_image);
 		Group webControls = popupLayout.findViewById(R.id.web_controls);
 		this.webEnableView = popupLayout.findViewById(R.id.web_enable);
+		this.qrCardView = popupLayout.findViewById(R.id.qr_card);
 		popupLayout.findViewById(R.id.web_label).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -156,7 +160,7 @@ public class IdentityPopup extends DimmingPopupWindow {
 		}
 
 		if (qrCodeView != null) {
-			qrCodeView.setOnClickListener(v -> zoomQR(v));
+			qrCodeView.setOnClickListener(this::zoomQR);
 		}
 
 		if (webControls != null && webEnableView != null) {
@@ -181,7 +185,10 @@ public class IdentityPopup extends DimmingPopupWindow {
 	}
 
 	private void zoomQR(View v) {
-		new QRCodePopup(context, activityRef.get().getWindow().getDecorView(), null).show(v, null);
+		ObjectAnimator animation = ObjectAnimator.ofFloat(qrCardView, "translationY", 500f);
+		animation.setDuration(200);
+		animation.start();
+		// new QRCodePopup(context, activityRef.get().getWindow().getDecorView(), null).show(v, null);
 	}
 
 	/**
@@ -211,7 +218,9 @@ public class IdentityPopup extends DimmingPopupWindow {
 
 		this.qrCodeView.setImageDrawable(bitmapDrawable);
 		if (ConfigUtils.getAppTheme(context) == ConfigUtils.THEME_DARK) {
-			ConfigUtils.invertColors(this.qrCodeView);
+			float scale = activity.getResources().getDisplayMetrics().density;
+			int size = (int) (4/*dp*/ * scale);
+			this.qrCodeView.setPadding(size, size, size, size);
 		}
 
 		if (toolbarView != null) {

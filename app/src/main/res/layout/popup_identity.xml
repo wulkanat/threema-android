@@ -2,6 +2,7 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:background="@android:color/transparent">
@@ -37,7 +38,7 @@
 				android:textColor="?attr/textColorPrimary"
 				android:textSize="24dp"
 				app:layout_constraintBottom_toTopOf="@+id/scan_button"
-				app:layout_constraintLeft_toLeftOf="@+id/qr_image" />
+				app:layout_constraintLeft_toLeftOf="@+id/qr_card" />
 
 			<ImageView
 				android:id="@+id/share_button"
@@ -54,20 +55,6 @@
 				app:layout_constraintTop_toTopOf="@+id/identity_label"
 				app:srcCompat="@drawable/ic_share_outline" />
 
-			<ImageView
-				android:id="@+id/qr_image"
-				android:layout_width="100dp"
-				android:layout_height="100dp"
-				android:adjustViewBounds="false"
-				android:clickable="true"
-				android:contentDescription="@string/qr_code"
-				android:focusable="true"
-				android:foreground="?selectableItemBackground"
-				android:scaleType="fitCenter"
-				app:layout_constraintBottom_toTopOf="@+id/web_enable"
-				app:layout_constraintLeft_toLeftOf="parent"
-				app:layout_constraintTop_toBottomOf="@+id/identity_label" />
-
 			<com.google.android.material.chip.Chip
 				android:id="@+id/scan_button"
 				style="@style/Threema.Chip.Outline.Action.WithIcon"
@@ -78,10 +65,10 @@
 				android:text="@string/scan_id"
 				app:chipIcon="@drawable/ic_qr_code_scan"
 				app:ensureMinTouchTargetSize="false"
-				app:layout_constraintVertical_chainStyle="packed"
-				app:layout_constraintLeft_toRightOf="@+id/qr_image"
-				app:layout_constraintTop_toTopOf="@+id/qr_image"
-				app:layout_constraintBottom_toTopOf="@+id/profile_button" />
+				app:layout_constraintBottom_toTopOf="@+id/profile_button"
+				app:layout_constraintLeft_toRightOf="@+id/qr_card"
+				app:layout_constraintTop_toTopOf="@+id/qr_card"
+				app:layout_constraintVertical_chainStyle="packed" />
 
 			<com.google.android.material.chip.Chip
 				android:id="@+id/profile_button"
@@ -95,7 +82,7 @@
 				app:ensureMinTouchTargetSize="false"
 				app:layout_constraintTop_toBottomOf="@+id/scan_button"
 				app:layout_constraintLeft_toLeftOf="@+id/scan_button"
-				app:layout_constraintBottom_toBottomOf="@+id/qr_image" />
+				app:layout_constraintBottom_toBottomOf="@+id/qr_card" />
 
 			<!-- material switch currently has themeing problems -->
 
@@ -124,7 +111,7 @@
 				android:focusable="true"
 				android:text="@string/webclient"
 				android:textAppearance="@style/Threema.TextAppearance.Body2"
-				app:layout_constraintTop_toBottomOf="@id/qr_image"
+				app:layout_constraintTop_toBottomOf="@id/qr_card"
 				app:layout_constraintLeft_toRightOf="@+id/web_enable" />
 
 			<androidx.constraintlayout.widget.Group
@@ -133,6 +120,27 @@
 				android:layout_height="wrap_content"
 				android:visibility="visible"
 				app:constraint_referenced_ids="web_enable, web_label" />
+
+			<androidx.cardview.widget.CardView
+				android:id="@+id/qr_card"
+				android:layout_width="100dp"
+				android:layout_height="100dp"
+				app:cardBackgroundColor="@android:color/white"
+				app:layout_constraintBottom_toTopOf="@+id/web_enable"
+				app:layout_constraintStart_toStartOf="@+id/identity_label"
+				app:layout_constraintTop_toBottomOf="@+id/identity_label" >
+
+				<ImageView
+					android:id="@+id/qr_image"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:adjustViewBounds="false"
+					android:clickable="true"
+					android:contentDescription="@string/qr_code"
+					android:focusable="true"
+					android:foreground="?selectableItemBackground"
+					android:scaleType="fitCenter" />
+			</androidx.cardview.widget.CardView>
 
 		</androidx.constraintlayout.widget.ConstraintLayout>
 
