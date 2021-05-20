@@ -491,7 +491,7 @@ dependencies {
     }
 
     implementation 'org.saltyrtc.chunked-dc:chunked-dc:1.0.0'
-    implementation 'ch.threema.webrtc:webrtc-android:84.2.0'
+    implementation 'ch.threema:webrtc-android:84.2.1'
     implementation('org.saltyrtc.tasks.webrtc:saltyrtc-task-webrtc:0.18.0') {
         exclude module: 'saltyrtc-client'
     }
